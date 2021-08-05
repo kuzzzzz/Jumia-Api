@@ -74,7 +74,7 @@ const getDrinks = async (category, url) => {
 
 const final = async (t, v) => {
   const f = await getDrinks(t, v);
-  console.log(f);
+  // console.log(f);
   return f;
 };
 
@@ -89,3 +89,9 @@ module.exports = final;
 // };
 
 // saveData();
+
+
+// Task
+// Top selling products route
+// Product Details
+// Reviews

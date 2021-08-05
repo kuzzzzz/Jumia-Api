@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const getDrinks = require("./scrapper");
+const topSelling = require("./scrapper-top-selling");
 
 const PORT = process.env.PORT || 5000;
 
@@ -11,6 +12,16 @@ app.get("/", async (req, res) => {
   try {
     const drinks = await getDrinks("mlp-deals-of-the-day", 1);
     return res.status(200).json(drinks);
+  } catch (err) {
+    return res.status(500).json({
+      err: err.toString(),
+    });
+  }
+});
+app.get("/api/topSelling", async (req, res) => {
+  try {
+    const data = await topSelling();
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
