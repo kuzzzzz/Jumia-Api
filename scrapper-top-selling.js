@@ -1,6 +1,5 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const productDescription = require("./scrapper-product-details");
 
 const topSelling = async () => {
   const apiData = {
@@ -13,7 +12,6 @@ const topSelling = async () => {
         category: [],
         prices: "",
         imageSrc: [],
-        productDesc: {},
       },
     ],
   };
@@ -42,22 +40,14 @@ const topSelling = async () => {
         category: parentElem.attribs["data-category"],
         prices: price,
         imageSrc: parentElem.firstChild.attribs["data-src"],
-        // productDesc:productDescription
+        prodDesc: `http://localhost:5000/api/prodDesc${parentElem.attribs["href"]}`,
       };
     });
     let c = apiData.topSelling.length;
     apiData.topSelling.push({ totalProductsFound: c });
-
-    // for (let x = 0; x < 28; x++) {
-    //   let lofi = await productDescription(apiData.topSelling[x].productUrl);
-    //   console.log(lofi)
-    //   // apiData.topSelling[x].productDesc = lofi;
-    // }
-// productDescription()
     return apiData;
   } catch (err) {
     console.error(err);
   }
 };
-
 module.exports = topSelling;

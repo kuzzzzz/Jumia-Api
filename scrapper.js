@@ -59,6 +59,7 @@ const getDrinks = async (category, url) => {
             category: parentElem.attribs["data-category"],
             prices: prices,
             imageSrc: parentElem.firstChild.firstChild.attribs["data-src"],
+            prodDesc: `http://localhost:5000/api/prodDesc${parentElem.attribs["href"]}`,
           });
       }
     });
@@ -90,8 +91,10 @@ module.exports = final;
 
 // saveData();
 
-
 // Task
-// Top selling products route
-// Product Details
-// Reviews
+// Reviews scrapper
+// code clean up
+// error handling
+// adding mongo database
+// post routes
+// open source 

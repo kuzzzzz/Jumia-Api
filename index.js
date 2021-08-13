@@ -1,14 +1,14 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 const getDrinks = require("./scrapper");
+const productDescription = require("./scrapper-product-details");
 const topSelling = require("./scrapper-top-selling");
 
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
+app.get("/api/dailyDeals", async (req, res) => {
   try {
     const drinks = await getDrinks("mlp-deals-of-the-day", 1);
     return res.status(200).json(drinks);
@@ -29,9 +29,22 @@ app.get("/api/topSelling", async (req, res) => {
   }
 });
 
+//basically the order matters I just changed the order and it worked
+ 
+app.get(`/api/prodDesc/:prodUrl/`, async (req, res) => {
+  try {
+    const drinks = await productDescription(`/${req.params.prodUrl}`);
+    return res.status(200).json(drinks);
+  } catch (err) {
+    return res.status(500).json({
+      err: err.toString(),
+    });
+  }
+});
+
 app.get(`/api/:category`, async (req, res) => {
   try {
-    const drinks = await getDrinks(req.params.category,1);
+    const drinks = await getDrinks(req.params.category, 1);
     return res.status(200).json(drinks);
   } catch (err) {
     return res.status(500).json({
@@ -47,10 +60,11 @@ app.get(`/api/:category/:id`, async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
-      
     });
   }
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
