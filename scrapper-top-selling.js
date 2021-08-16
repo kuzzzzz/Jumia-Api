@@ -41,6 +41,7 @@ const topSelling = async () => {
         prices: price,
         imageSrc: parentElem.firstChild.attribs["data-src"],
         prodDesc: `http://localhost:5000/api/prodDesc${parentElem.attribs["href"]}`,
+        prodReview: `http://localhost:5000/api/reviews/${parentElem.attribs["data-id"]}/1`,
       };
     });
     let c = apiData.topSelling.length;

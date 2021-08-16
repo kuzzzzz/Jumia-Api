@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 const fs = require("fs");
 
-const getDrinks = async (category, url) => {
+const searchJumia = async (category, url) => {
   const apiData = {
     [category]: [
       {
@@ -21,7 +21,7 @@ const getDrinks = async (category, url) => {
     ],
   };
   try {
-    const siteUrl = `https://www.jumia.com.ng/${category}/?page=${url}#catalog-listing`;
+    const siteUrl = `https://www.jumia.com.ng/catalog/?q=${category}&page=${url}#catalog-listinge`;
     const { data } = await axios({
       method: "GET",
       url: siteUrl,
@@ -76,12 +76,12 @@ const getDrinks = async (category, url) => {
 };
 
 const final = async (t, v) => {
-  const f = await getDrinks(t, v);
+  const f = await searchJumia(t, v);
   // console.log(f);
   return f;
 };
 
-module.exports = final;
+module.exports = searchJumia;
 
 // To do rountinely save data to file
 // const saveData = async () => {
