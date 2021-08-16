@@ -69,6 +69,17 @@ app.get(`/api/reviews/:id/:idx`, async (req, res) => {
   }
 });
 
+app.get(`/api/search/:category/`, async (req, res) => {
+  try {
+    const drinks = await searchJumia(req.params.category, 1);
+    return res.status(200).json(drinks);
+  } catch (err) {
+    return res.status(500).json({
+      err: err.toString(),
+    });
+  }
+});
+
 app.get(`/api/search/:category/:id`, async (req, res) => {
   try {
     const drinks = await searchJumia(req.params.category, req.params.id);
@@ -79,6 +90,7 @@ app.get(`/api/search/:category/:id`, async (req, res) => {
     });
   }
 });
+
 app.get(`/api/category/:category`, async (req, res) => {
   try {
     const drinks = await getDrinks(req.params.category, 1);

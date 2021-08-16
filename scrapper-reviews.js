@@ -77,10 +77,8 @@ const productReview = async (id, idx = 1) => {
 
     // if there are no reveiws
     if (Boolean(productReview.totalRating)) {
-      console.log(productReview);
       return productReview;
     } else {
-      console.log({ message: $("p.-fs16.-ptl.-m").text() });
       return { message: $("p.-fs16.-ptl.-m").text() };
     }
   } catch (err) {
