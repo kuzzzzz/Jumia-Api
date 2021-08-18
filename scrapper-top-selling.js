@@ -48,7 +48,7 @@ const topSelling = async () => {
     apiData.topSelling.push({ totalProductsFound: c });
     return apiData;
   } catch (err) {
-    console.error(err);
+    return { message: err.message };
   }
 };
 module.exports = topSelling;

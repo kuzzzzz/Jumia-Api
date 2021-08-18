@@ -23,6 +23,21 @@ app.get("/api/dailyDeals", async (req, res) => {
     });
   }
 });
+
+app.get("/api/dailyDeals/:id", async (req, res) => {
+  try {
+    const { "mlp-deals-of-the-day": dailyDeals } = await getDrinks(
+      "mlp-deals-of-the-day",
+      req.params.id
+    );
+    return res.status(200).json({ dailyDeals });
+  } catch (err) {
+    return res.status(500).json({
+      err: err.toString(),
+    });
+  }
+});
+
 app.get("/api/topSelling", async (req, res) => {
   try {
     const data = await topSelling();
@@ -38,8 +53,8 @@ app.get("/api/topSelling", async (req, res) => {
 
 app.get(`/api/prodDesc/:prodUrl/`, async (req, res) => {
   try {
-    const drinks = await productDescription(`/${req.params.prodUrl}`);
-    return res.status(200).json(drinks);
+    const data = await productDescription(`/${req.params.prodUrl}`);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
@@ -71,8 +86,8 @@ app.get(`/api/reviews/:id/:idx`, async (req, res) => {
 
 app.get(`/api/search/:category/`, async (req, res) => {
   try {
-    const drinks = await searchJumia(req.params.category, 1);
-    return res.status(200).json(drinks);
+    const data = await searchJumia(req.params.category, 1);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
@@ -82,8 +97,8 @@ app.get(`/api/search/:category/`, async (req, res) => {
 
 app.get(`/api/search/:category/:id`, async (req, res) => {
   try {
-    const drinks = await searchJumia(req.params.category, req.params.id);
-    return res.status(200).json(drinks);
+    const data = await searchJumia(req.params.category, req.params.id);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
@@ -93,8 +108,8 @@ app.get(`/api/search/:category/:id`, async (req, res) => {
 
 app.get(`/api/category/:category`, async (req, res) => {
   try {
-    const drinks = await getDrinks(req.params.category, 1);
-    return res.status(200).json(drinks);
+    const data = await getDrinks(req.params.category, 1);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
@@ -104,8 +119,8 @@ app.get(`/api/category/:category`, async (req, res) => {
 
 app.get(`/api/category/:category/:id`, async (req, res) => {
   try {
-    const drinks = await getDrinks(req.params.category, req.params.id);
-    return res.status(200).json(drinks);
+    const data = await getDrinks(req.params.category, req.params.id);
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),

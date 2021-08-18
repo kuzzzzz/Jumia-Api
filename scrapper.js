@@ -71,17 +71,11 @@ const getDrinks = async (category, url) => {
     });
     return apiData;
   } catch (err) {
-    console.error(err);
+    return { message: err.message };
   }
 };
 
-const final = async (t, v) => {
-  const f = await getDrinks(t, v);
-  // console.log(f);
-  return f;
-};
-
-module.exports = final;
+module.exports = getDrinks;
 
 // To do rountinely save data to file
 // const saveData = async () => {
@@ -94,9 +88,7 @@ module.exports = final;
 // saveData();
 
 // Task
-// Reviews scrapper
-// code clean up
-// error handling
+// create frontend to explain database and future plans
 // adding mongo database
 // post routes
 // open source

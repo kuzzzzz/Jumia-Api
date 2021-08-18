@@ -72,7 +72,7 @@ const productDescription = async (url) => {
     });
     return productDetails;
   } catch (err) {
-    console.error(err);
+    return { message: err.message };
   }
 };
 

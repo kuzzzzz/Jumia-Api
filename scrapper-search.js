@@ -1,8 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const fs = require("fs");
-
 const searchJumia = async (category, url) => {
   const apiData = {
     [category]: [
@@ -71,32 +69,8 @@ const searchJumia = async (category, url) => {
     });
     return apiData;
   } catch (err) {
-    console.error(err);
+    return { message: err.message };
   }
 };
 
-const final = async (t, v) => {
-  const f = await searchJumia(t, v);
-  // console.log(f);
-  return f;
-};
-
 module.exports = searchJumia;
-
-// To do rountinely save data to file
-// const saveData = async () => {
-//   for (let i = 1; i <= 27; ++i) {
-//     const data = await getDrinks(i);
-//     fs.appendFileSync("jumia-drinks.json", JSON.stringify(data));
-//   }
-// };
-
-// saveData();
-
-// Task
-// Reviews scrapper
-// code clean up
-// error handling
-// adding mongo database
-// post routes
-// open source

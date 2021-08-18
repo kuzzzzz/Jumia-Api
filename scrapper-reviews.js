@@ -82,7 +82,7 @@ const productReview = async (id, idx = 1) => {
       return { message: $("p.-fs16.-ptl.-m").text() };
     }
   } catch (err) {
-    console.error(err);
+    return { message: err.message };
   }
 };
 
