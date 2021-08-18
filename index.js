@@ -10,6 +10,18 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
+app.use(express.static(__dirname + "/public"));
+
+app.get("/", async (req, res) => {
+  try {
+    return res.sendFile("./views/index.html", { root: __dirname });
+  } catch (err) {
+    return res.status(500).json({
+      err: err.toString(),
+    });
+  }
+});
+
 app.get("/api/dailyDeals", async (req, res) => {
   try {
     const { "mlp-deals-of-the-day": dailyDeals } = await getDrinks(
