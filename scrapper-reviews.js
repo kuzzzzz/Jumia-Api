@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 const productReview = async (id, idx = 1) => {
   const productReview = {
-    id: id,
+    _id: id,
     totalRating: "",
     avgStarRating: "",
     totalStarsRating: [],

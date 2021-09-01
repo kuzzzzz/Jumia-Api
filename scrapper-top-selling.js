@@ -5,7 +5,7 @@ const topSelling = async () => {
   const apiData = {
     topSelling: [
       {
-        id: "",
+        _id: "",
         name: "",
         brand: "",
         productUrl: "",
@@ -33,7 +33,7 @@ const topSelling = async () => {
       price.push($("div.prc", $(parentElem).html()).text());
 
       apiData.topSelling[parentIdx] = {
-        id: parentElem.attribs["data-id"],
+        _id: parentElem.attribs["data-id"],
         name: $("div.name", $(parentElem).html()).text(),
         brand: parentElem.attribs["data-brand"],
         productUrl: parentElem.attribs["href"],

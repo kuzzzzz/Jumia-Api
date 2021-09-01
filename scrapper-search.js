@@ -5,7 +5,7 @@ const searchJumia = async (category, url) => {
   const apiData = {
     [category]: [
       {
-        id: "",
+        _id: "",
         indexOnPage: "",
         name: "",
         numReviews: "",
@@ -49,7 +49,7 @@ const searchJumia = async (category, url) => {
         prices.push($("div.prc", $(parentElem).html()).text()),
           prices.push($("div.old", $(parentElem).html()).text()),
           (apiData[category][parentIdx] = {
-            id: parentElem.attribs["data-id"],
+            _id: parentElem.attribs["data-id"],
             indexOnPage: `Page ${url}, product index ${parentElem.attribs["data-position"]}`,
             name: $("h3.name", $(parentElem).html()).text(),
             numReviews: numReviews,
