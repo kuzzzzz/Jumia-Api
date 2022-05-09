@@ -27,6 +27,7 @@ const getDrinks = async (category, url) => {
       url: siteUrl,
     });
     const $ = cheerio.load(data);
+     
     const elemSelector =
       "#jm > main > div.aim.row.-pbm > div.-pvs.col12 > section > div.-paxs.row._no-g._4cl-3cm-shs > article > a";
     const proSelc =
@@ -69,6 +70,7 @@ const getDrinks = async (category, url) => {
       totalProductsFound: test,
       lastPage: lastIndx,
     });
+  
     return apiData;
   } catch (err) {
     return { message: err.message };

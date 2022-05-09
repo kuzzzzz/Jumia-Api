@@ -22,6 +22,7 @@ const topSelling = async () => {
       url: siteUrl,
     });
     const $ = cheerio.load(data);
+   
     const elemSelector =
       "#jm > main > div.row.-pvm > div.col16.-mvs > div > section > div > div > div > article > a ";
 
@@ -46,9 +47,12 @@ const topSelling = async () => {
     });
     let c = apiData.topSelling.length;
     apiData.topSelling.push({ totalProductsFound: c });
+   
     return apiData;
   } catch (err) {
     return { message: err.message };
   }
 };
+
+
 module.exports = topSelling;

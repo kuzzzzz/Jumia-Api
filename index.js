@@ -22,13 +22,14 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/api/dailyDeals", async (req, res) => {
+app.get("/api/flashSales", async (req, res) => {
   try {
-    const { "mlp-deals-of-the-day": dailyDeals } = await getDrinks(
-      "mlp-deals-of-the-day",
+    const { "flash-sales": flashSales } = await getDrinks(
+      "flash-sales",
       1
     );
-    return res.status(200).json({ dailyDeals });
+    
+    return res.status(200).json({ flashSales });
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
@@ -36,13 +37,13 @@ app.get("/api/dailyDeals", async (req, res) => {
   }
 });
 
-app.get("/api/dailyDeals/:id", async (req, res) => {
+app.get("/api/flashSales/:id", async (req, res) => {
   try {
-    const { "mlp-deals-of-the-day": dailyDeals } = await getDrinks(
-      "mlp-deals-of-the-day",
+    const { "flash-sales": flashSales } = await getDrinks(
+      "flash-sales",
       req.params.id
     );
-    return res.status(200).json({ dailyDeals });
+    return res.status(200).json({ flashSales });
   } catch (err) {
     return res.status(500).json({
       err: err.toString(),
